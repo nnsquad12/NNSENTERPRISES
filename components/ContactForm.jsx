@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-// Replace with your business inbox, or swap this handler for a form service
-// (Formspree, Resend, or a Next.js API route) once the site is deployed.
-const CONTACT_EMAIL = "contact@nnsenterprises.com";
+// Inquiries open the visitor's email app addressed to this inbox. For a
+// hosted form service instead, see Formspree/Resend note in the README.
+const CONTACT_EMAIL = "admin@nns.enterprises";
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
