@@ -16,7 +16,7 @@
   --max:1200px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{
   background:var(--paper);
   color:var(--ink);
@@ -160,6 +160,7 @@ header.hero{
 
 /* ---------- what we do ---------- */
 .split{display:grid;grid-template-columns:1.05fr .95fr;gap:76px;align-items:start}
+.split>*,.founder-grid>*,.contact-grid>*{min-width:0}
 .lede{font-size:20px;font-weight:500}
 .body-copy{color:var(--muted);margin-top:18px}
 .editorial{margin-top:44px}
@@ -363,7 +364,46 @@ footer{background:var(--ink);color:var(--paper);padding:52px 0}
   .menu-btn{display:block}
   .nav-cta{display:none}
   .two-col{grid-template-columns:1fr}
-  .philosophy{padding:38px 30px}
+  .philosophy-band{padding:88px 0}
+}
+@media(max-width:480px){
+  .wrap{padding:0 20px}
+  section{padding:72px 0}
+  /* nav */
+  .logo{font-size:14px;gap:9px}
+  .logo-mark{height:34px}
+  /* hero */
+  header.hero{padding:120px 0 80px}
+  .hero h1{font-size:clamp(28px,8.5vw,44px)}
+  .hero h1 .line:nth-child(3)>span{-webkit-text-stroke:1.5px var(--ink)}
+  .hero-sub{font-size:16px;margin-top:24px}
+  .hero-actions{margin-top:32px;gap:12px}
+  .btn{padding:14px 24px;font-size:12px}
+  .hero-mark{right:-45%;height:55vh;opacity:.04}
+  /* headings */
+  h2{font-size:clamp(26px,7.5vw,40px);margin-bottom:20px}
+  /* sections */
+  .philosophy-band p.big{font-size:clamp(22px,6vw,32px)}
+  .philosophy-band p.small{font-size:16px}
+  /* services */
+  .svc{padding:32px 24px}
+  /* crew */
+  .crew-grid{grid-template-columns:1fr;gap:12px}
+  /* beliefs */
+  .beliefs li{font-size:16px;padding:18px 4px;gap:16px}
+  /* gallery */
+  .collage{gap:12px}
+  /* founder */
+  .founder-roles{font-size:11px;letter-spacing:.12em}
+  /* quote */
+  .quote{font-size:18px;padding-left:20px}
+  /* contact */
+  .contact-grid{gap:36px}
+  /* cta band */
+  .cta-band{padding:80px 20px}
+  /* footer */
+  .foot{flex-direction:column;align-items:flex-start;gap:16px}
+  .foot img{height:40px}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}

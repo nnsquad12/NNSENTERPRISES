@@ -26,7 +26,7 @@ function Ticker() {
     <div className="ticker" aria-label="Industries we serve">
       <div className="ticker-track">
         {items.map((name, i) => (
-          <span key={i}>
+          <span key={i} aria-hidden={i >= INDUSTRIES.length || undefined}>
             {name}
             <i>◆</i>
           </span>
@@ -278,7 +278,7 @@ export default function Home() {
             <div className="reveal">
               <p className="eyebrow">Founder</p>
               <h2>Meet <em>Noah Neumann</em></h2>
-              <p className="founder-roles">Athlete&nbsp;&nbsp;/&nbsp;&nbsp;Creator&nbsp;&nbsp;/&nbsp;&nbsp;Entrepreneur</p>
+              <p className="founder-roles">Athlete&nbsp;/ Creator&nbsp;/ Entrepreneur</p>
               <p className="lede">
                 As both a professional basketball player and full-time digital entrepreneur, Noah brings
                 a unique perspective to modern media.
