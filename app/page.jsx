@@ -87,7 +87,7 @@ function GrowthChart() {
         </g>
         <g className="chart-dot" fontSize="10" fill="#6B6B72" letterSpacing="1">
           <circle cx="300" cy="210" r="4" fill="#0A0A0C" />
-          <text x="300" y="238" textAnchor="middle">GROW YOUR VIEWS</text>
+          <text x="276" y="212" textAnchor="end">GROW YOUR VIEWS</text>
         </g>
       </svg>
       <figcaption>Built to compound — content systems that turn attention into audience</figcaption>

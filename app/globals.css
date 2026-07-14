@@ -43,7 +43,7 @@ section{padding:130px 0;position:relative}
 
 h2{
   font-family:var(--display);font-weight:900;font-stretch:120%;text-transform:uppercase;
-  font-size:clamp(32px,4.8vw,58px);line-height:1;letter-spacing:-.01em;margin-bottom:28px;
+  font-size:clamp(32px,4.2vw,58px);line-height:1;letter-spacing:-.01em;margin-bottom:28px;
 }
 h2 em{font-style:normal;color:var(--cobalt)}
 .dark h2 em{color:#7C8DFF}
@@ -159,6 +159,9 @@ header.hero{
 @keyframes scroll{to{transform:translateX(-50%)}}
 
 /* ---------- what we do ---------- */
+/* "INFRASTRUCTURE" is unbreakable and ~11.8em wide - cap this heading so it
+   never paints over the neighboring column */
+#what-we-do h2{font-size:clamp(30px,3.4vw,47px)}
 .split{display:grid;grid-template-columns:1.05fr .95fr;gap:76px;align-items:start}
 .split>*,.founder-grid>*,.contact-grid>*{min-width:0}
 .lede{font-size:20px;font-weight:500}
