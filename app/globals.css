@@ -325,6 +325,28 @@ form{display:grid;gap:24px}
 form .btn{border:none;cursor:pointer;justify-self:start;background:var(--ink);color:#fff}
 .form-note{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--muted);display:none}
 .form-note.show{display:block;color:var(--cobalt)}
+.form-note.error{color:#C0392B}
+.form-note.error a{color:inherit}
+form .btn:disabled{opacity:.6;cursor:default}
+
+/* ---------- contact form success ---------- */
+.form-success{display:grid;justify-items:start;gap:14px;padding:26px 0}
+.form-success .check{width:64px;height:64px}
+.form-success .check circle,.form-success .check path{
+  fill:none;stroke:var(--cobalt);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;
+}
+.form-success .check circle{
+  stroke-dasharray:183;stroke-dashoffset:183;
+  animation:draw .6s ease forwards;
+}
+.form-success .check path{
+  stroke-dasharray:36;stroke-dashoffset:36;
+  animation:draw .35s ease .45s forwards;
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+.form-success h3{font-family:var(--display);font-size:clamp(22px,3vw,30px);letter-spacing:-.01em}
+.form-success p{color:var(--muted);font-size:16px}
+.form-success .btn{border:none;cursor:pointer;background:var(--ink);color:#fff;margin-top:6px}
 .direct{margin-top:46px;padding-top:36px;border-top:1px solid var(--line);color:var(--muted);font-size:15px}
 .direct b{color:var(--ink);font-weight:600}
 

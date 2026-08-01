@@ -2,29 +2,47 @@
 
 import { useState } from "react";
 
-// Inquiries open the visitor's email app addressed to this inbox. For a
-// hosted form service instead, see Formspree/Resend note in the README.
+// Submissions are sent through Formspree, which emails them to the inbox
+// configured on the form — no email app needed on the visitor's device.
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mojgowzl";
 const CONTACT_EMAIL = "admin@nns.enterprises";
 
 export default function ContactForm() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const f = e.target;
-    const subject = encodeURIComponent(
-      "Business Inquiry — " + f.name.value + (f.company.value ? " (" + f.company.value + ")" : "")
-    );
-    const body = encodeURIComponent(
-      "Name: " + f.name.value + "\n" +
-      "Company: " + (f.company.value || "—") + "\n" +
-      "Email: " + f.email.value + "\n" +
-      "Phone: " + (f.phone.value || "—") + "\n\n" +
-      "Project Details:\n" + f.details.value
-    );
-    window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + subject + "&body=" + body;
-    setSent(true);
+    const form = e.target;
+    setStatus("sending");
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      if (!res.ok) throw new Error("send failed");
+      form.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
+
+  if (status === "success") {
+    return (
+      <div className="form-success" role="status">
+        <svg className="check" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="29" />
+          <path d="M20 33.5 28.5 42 44 25" />
+        </svg>
+        <h3>Inquiry Sent</h3>
+        <p>Thanks for reaching out — we&apos;ll get back to you shortly.</p>
+        <button type="button" className="btn magnetic" onClick={() => setStatus("idle")}>
+          <i>Send Another</i>
+        </button>
+      </div>
+    );
+  }
 
   return (
     <form className="reveal" onSubmit={handleSubmit}>
@@ -52,11 +70,12 @@ export default function ContactForm() {
         <label htmlFor="f-details">Project Details</label>
         <textarea id="f-details" name="details" required />
       </div>
-      <button type="submit" className="btn magnetic">
-        <i>Send Inquiry</i>
+      <button type="submit" className="btn magnetic" disabled={status === "sending"}>
+        <i>{status === "sending" ? "Sending…" : "Send Inquiry"}</i>
       </button>
-      <p className={`form-note${sent ? " show" : ""}`} id="formNote">
-        Inquiry drafted — your email app will open with the details filled in.
+      <p className={`form-note${status === "error" ? " show error" : ""}`} id="formNote">
+        Something went wrong — please try again, or email us directly at{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
       </p>
     </form>
   );
