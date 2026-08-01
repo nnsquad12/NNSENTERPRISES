@@ -4,7 +4,7 @@ import { useState } from "react";
 
 // Submissions are sent through Formspree, which emails them to the inbox
 // configured on the form — no email app needed on the visitor's device.
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mojgowzl";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xpqvgrvl";
 const CONTACT_EMAIL = "admin@nns.enterprises";
 
 export default function ContactForm() {
